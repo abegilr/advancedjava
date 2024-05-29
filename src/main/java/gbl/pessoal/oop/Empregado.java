@@ -51,11 +51,50 @@ public abstract class Empregado {
 
     @Override
     public String toString() {
-        return new StringBuilder().append("\nID: ").append(this.id)
-                .append("\nNome: ").append(this.nome)
-                .append("\nContratado em: ").append(DateTimeFormatter.ofPattern("dd-MMMM-yyyy à's' HH:mm:ss")
+        return new StringBuilder().append("ID: ").append(this.id)
+                .append("\tNome: ").append(this.nome)
+                .append("\tContratado em: ").append(DateTimeFormatter.ofPattern("dd-MMMM-yyyy à's' HH:mm:ss")
                         .format(this.dataContratacao))
                 .toString();
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+        result = prime * result + ((dataContratacao == null) ? 0 : dataContratacao.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Empregado other = (Empregado) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (nome == null) {
+            if (other.nome != null)
+                return false;
+        } else if (!nome.equals(other.nome))
+            return false;
+        if (dataContratacao == null) {
+            if (other.dataContratacao != null)
+                return false;
+        } else if (!dataContratacao.equals(other.dataContratacao))
+            return false;
+        return true;
+    }
+
+    
 
 }
